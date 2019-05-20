@@ -8,8 +8,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>Copyright 2019 Actum Processing</a>
+  - <a href='https://www.actumprocessing.com'>www.actumprocessing.com</a>
 
 includes:
   - errors
@@ -17,29 +17,29 @@ includes:
 search: true
 ---
 
-# Actum Integration Guide
+# Introduction
 
-Actum's API allows developers to manage a variety of tasks, such as creating and updating transacions, managing customer and payment data, and querying settlement information. It was initially built for merchants requiring a high level of customization. Its customizable architecture now enables simple integration with software partners, as well. Actum uses HTTPS for all transactions to ensure the safety of consumer information. 
+Actum's API allows developers to manage a variety of tasks, such as creating and updating transactions, managing customer and payment data, and querying settlement information. While it was initially built for merchants requiring a high level of customization, its adaptable architecture also helps facilitate integration with software partners. Actum uses HTTPS for all transactions to ensure the safety of consumer information.
 
-This guide provides an overview for our merchants and partners of how to start using Actum. If you have any questions throughout the process, please don't hesitate to contact us at [support@actumprocessing.com](support@actumprocessing.com).
+This guide provides an overview for our merchants and partners that are seeking to start using Actum. If you have any questions throughout the process, please don't hesitate to contact us at [support@actumprocessing.com](support@actumprocessing.com).
 
 # Getting Started
- 
+
 To get started using Actum's API, you'll want to follow these steps:
- 
-### Step 1: Register for a Test Account
- 
+
+### Register for a Test Account
+
 First, you will want to navigate to Actum's [Register for a Test Account](https://www.actumprocessing.com/register-test-account/) page. You will need to enter your First Name, Last Name, Email, Company Name, and Phone Number to sign up. Actum's support team will use this information for verification purposes in order to create your account.
 
-Once your account is created (typically within less than 24 hours on business days), you will receive a welcome email with your new test account credentials. 
+Once your account is created (typically within less than 24 hours on business days), you will receive a welcome email with your new test account credentials.
 
-### Step 2: Log into your Test Account
+### Log into your Test Account
 
 To begin testing, you will be able to log into a test portal using the username and password provided by Actum's support team. Actum's portal is available at the following link: [https://join.actumprocessing.com](https://join.actumprocessing.com)
 
 It is recommended that you change your password immediately upon login. There is no need to create a separate API key to complete setup, as your username and password will allow you to authenticate to Actum's test enviroment, securely.
 
-### Step 3: Create a Call
+### Create a Call
 
 To create a new API call, you'll first want to join the server at [https://join.actumprocessing.com/cgi-bin/dbs/man_trans.cg](https://join.actumprocessing.com/cgi-bin/dbs/man_trans.cgi). The following parameters are required:
 
@@ -51,39 +51,35 @@ To create a new API call, you'll first want to join the server at [https://join.
 * `action_code` (this uses `D`)
 * `order id` (order number of a test transaction
 
-**Note:** All API request methods are `POST` only. In this case, `POST` requests act similarly to `GET` requests, in that the requests function primarily to return information pertaining to a specific resource. 
+<aside class="notice">
+All API request methods are `POST` only. In this case, `POST` requests act similarly to `GET` requests, in that the requests function primarily to return information pertaining to a specific resource.
+</aside>
 
 The content type you'll need to use is `application/x---www---form---urlencoded **or** multipart/form--data`.
 
-#### Understanding Responses
+* Understanding Responses: Text to explain returns from different objects.
+* Status Codes: Explanation and table of status codes.
+* Understanding Webhooks: Explanation and examples.
 
-Text to explain returns from different objects.
+### Test your Calls
 
-#### Status Codes
-
-Explanation and table of status codes.
-
-#### Understanding Webhooks
-
-Explanation and examples
-
-### Step 4: Test your Calls
-
-Description
+Description of how to test calls...
 
 In-app consequences of a return
 Payment retries and refunds
 
 # Customers and Accounts
 
+The following objects will allow you to:
+
 * View customer account information
 * Verify customer accounts with Authentecheck
 * Initiate and verify micro-deposits
 
 
-### Merchant Object  [consider renaming if integration partners would use this in a different way than a merchant]
+## Merchant Object
 
-The `merchant` object represents account information pertaining to the merchant that submits a debit or credit transaction.
+The `merchant` object represents account information pertaining to the merchant that submits a Debit or Credit transaction.
 
 | Parameter | Description | Type | Req |
 |---|---|---|---|
@@ -92,12 +88,11 @@ The `merchant` object represents account information pertaining to the merchant 
 | `pmt_type` | Type of payment being submitted (check, or `chk`, is the default value). | -- | N |
 | `response_location` | The `man_trans.cgi` script will respond to this URL with response variables if passed in. | Full path URL | N |
 
-
 # Submitting a Transaction
 
-The following information outlines the required and optional parfields for submitring a debit or credit transaction to Actum.
+The following information outlines the required and optional parfields for submitting a debit or credit transaction to Actum.
 
-It may be helpful to familiarize yourself with the following resources, prior to submitting a transction.
+It may be helpful to familiarize yourself with the following resources, prior to submitting a transaction.
 
 * [ACH Transaction Types]
 * [ACH Transaction Lifestyle]
@@ -131,12 +126,12 @@ The `Consumer` object represents the Know Your Customer (KYC) details associated
 | `custzip` | The consumer's zip code. This field may be required, based on merchant settings. [max length = 16] | ALPHANUMERIC | C |
 | `custphone` | The consmer's phone number. This field may be required, based on merchant settings. [max length = 16] | ALPHANUMERIC | C
 | `shipaddress1` | The first line of a consumer's shipping address. [max length = 64] | ALPHANUMERIC | N |
-| `shipaddress2` | The second line of a consumer's shipping address. [max length = 64] | ALPHANUMERIC | N | 
-| `shipcity` | The city included in the consumer's shipping address. [max length = 32] | ALPHANUMERIC | N | 
+| `shipaddress2` | The second line of a consumer's shipping address. [max length = 64] | ALPHANUMERIC | N |
+| `shipcity` | The city included in the consumer's shipping address. [max length = 32] | ALPHANUMERIC | N |
 | `shipstate` | The state included in the consumer's shipping address. [max length = 32] | ALPHANUMERIC | N |
 | `shipstate` | The zip code included in the consumer's shipping address. [max length = 16] | ALPHANUMERIC | N |
 | `custssn` | The social security details of the consumer. This field may be expressed as the last four digits, or the full social security number. This field may be required, based on merchant settings. [max length = 16] | -- | C |
-| `birth_date` | The consumer's birth date, expressed in `MMDDYYYY` format. This field may be required, based on merchant settings. | -- | C | 
+| `birth_date` | The consumer's birth date, expressed in `MMDDYYYY` format. This field may be required, based on merchant settings. | -- | C |
 
 
 ### Billing Information
@@ -187,14 +182,14 @@ Refunds can only be submitted against the transaction status of `Check Settlemen
 | `prev_history_id` | The `History_ID` of the transaction you want to refund. | NUMBER | If `order_id` is not provided |
 | `order_id` |The order ID of the transaction you want to refund. Max length = 32 | ALPHANUMERIC | Y |
 | `initial_amount` | The initial amount of the bill.  Partial refunds are not accepted. | XX.XX ex. 49.95 | Y |
- 
+
 # Revoking Transactions
 
 Revoking a transaction will prevent the transaction from being originated to the bank for processing. Standard debits and credits can be revoked until 4pm CT the same day of submission.  Same Day Debits / Credits can be revoked until 11am CT.  If you have the ability to originate transactions using late-night processing, you will have until 9pm CT to revoke.
 
 The response may contain the following parameters:
 *	`status=success`
-*	`status=Error` 
+*	`status=Error`
 * `error=Order Number Not Found` (transaction has already originated)
 
 (note that a lot of info. in this section is repetitive)
@@ -256,7 +251,8 @@ In order to edit an existing transaction that is scheduled to originate the same
 To update the billing amount, billing cycle, maximum number of billings, or the next billing date, the following parameters are required.  If any of the parameters are left blank, the adjustments will not take place.  Please note that this request will apply to the transaction scheduled for the following business day.
 
 The response may contain the following parameters:
-*	`status=success`
+
+*	`status=success`, or
 *	`status=error` (with reason for error)
 
 | Parameter | Description | Type | Req |
@@ -278,8 +274,8 @@ To check the transaction status, the following parameters are required.
 
 The response may contain the following parameters:
 * `curr_bill_status`:  PreAuth, Settled, Returned, Declined
-*	`refund_status` (if applicable):  Accepted, Pending, Declined 
-*	`join_date` 
+*	`refund_status` (if applicable):  Accepted, Pending, Declined
+*	`join_date`
 *	`recurstatus` (only for type=extended):  Active, Inactive   
 *	`billing_cycle` (only for type=extended)   
 *	`last_billing_date`  (only for type=extended)   
@@ -296,9 +292,9 @@ The response may contain the following parameters:
 | `type` | The transaction type can be either `basic` or `extended` (if neither are provided, then `default=basic`) | -- | N
 
 
-# Validation Errors
+## Validation Errors
 
-Upon submission, the Actum Processing system will validate each form field.  If all required form fields are valid, the request will be sent to our transaction server.  If a form field is invalid or not supplied as required, the output returned to your script will contain a listing of errors, which are listed below.
+Upon submission, the Actum Processing system will validate each form field.  If all required form fields are valid, the request will be sent to our transaction server.  If a form field is invalid or not supplied as required, the output returned to your script will contain a listing of errors, which are included below.
 
 * Email address is required.
 * Email address is invalid.
@@ -345,9 +341,10 @@ Upon submission, the Actum Processing system will validate each form field.  If 
 * Date of Birth day is too long.
 * Date of Birth day is invalid.
 * Invalid birth date entered.
- 
- 
-# Decline Codes
+
+## Decline Codes
+
+Description
 
 | Code | Definition |
 |---|---|
@@ -390,13 +387,9 @@ Upon submission, the Actum Processing system will validate each form field.  If 
 | DTE200	| Account information could not be verified |                                                                   
 
 
-# Sample Responses
+## Sample Responses
 
-Sample responses come in two types: `Accepted` and `Declined`.  Each type of response is outlined below in the following sections and can be directed to the same or different scripts, based on preference.  
-
-Responses are not URL encoded and are new-line delimited.  Below is a sample response, which contains the status of the transaction `Accepted` or `declined`, a reason for any declined status, and a set of variables returned from the transaction server, and `PostedVars`, which is a block that contains all variables passed to the Actum Processing system, except for the account information.
-
-### Example Accepted Response
+> Example Accepted Response:
 
 ```
 status=Accepted
@@ -423,10 +416,14 @@ days_til_recur=14
 max_num_billing=6
 currency=US
 chk_number=1234
-PostedVars=END 
+PostedVars=END
 ```
 
-### Example Declined Response
+Sample responses come in two types: `Accepted` and `Declined`.  Each type of response is outlined below in the following sections and can be directed to the same or different scripts, based on preference.  
+
+Responses are not URL encoded and are new-line delimited.  Below is a sample response, which contains the status of the transaction `Accepted` or `declined`, a reason for any declined status, and a set of variables returned from the transaction server, and `PostedVars`, which is a block that contains all variables passed to the Actum Processing system, except for the account information.
+
+> Example Declined Response:
 
 ```
 status=declined
@@ -445,7 +442,7 @@ custcity=Sometown
 custstate=TX
 custzip=78717
 custphone=1234567890
-profile_id=	
+profile_id=
 initial_amount=1.25
 billing_cycle=2
 recur_amount=99.99
@@ -453,31 +450,33 @@ days_til_recur=14
 max_num_billing=6
 currency=US
 chk_number=1234
-PostedVars=END 
+PostedVars=END
 ```
 
 
 # Tracking a Transaction
 
-The transaction history files contain all initial sales (Check Pre-Auth, Same-day Debit), Returns (Check Return), Funded Debits (Check Settlement), and Refunds / Credits (Check Refund, Same-day Credit) from the previous day.  A transaction history file will come in a flat, quote-qualifier, comma-delimited file, which can either be picked up from our SFTP server or sent to the merchant’s SFTP server. 
+The transaction history files contain all initial sales (Check Pre-Auth, Same-day Debit), Returns (Check Return), Funded Debits (Check Settlement), and Refunds / Credits (Check Refund, Same-day Credit) from the previous day.  A transaction history file will come in a flat, quote-qualifier, comma-delimited file, which can either be picked up from our SFTP server or sent to the merchant’s SFTP server.
 
-The following Operating systems are expecting the following to know when there is an end of line:
+The following operating systems are expecting the following to know when there is an end of line:
 
 * UNIX uses a (LF) Linefeed
 * Windows uses a (CRLF) Carriage Return / Line Feed
 * The Transaction History File on our server will only have a (LF) Line Feed
 
+<aside class="warning">
 If you transfer the file correctly using ASCII on a Windows Machine, you will get a file with (CRLF) Carriage Return / Line Feed. If transferred incorrectly, the file in BINARY will looked garbled and all data will be on the first line.
+</aside>
 
+<aside class="notice">
 You will need to download the file in ASCII to make sure there is no data corruption.
+</aside>
 
-## Transaction History File Format
-
-### Returned Variables
+## Returned Variables
 
 The naming format of the transaction history file will be:
 
-`PARENTID-trans-ACTUM-YYYYMMDD.txt` e.g.: `ACTUMTEST-trans-ACTUM-20050212.txt`
+`PARENTID-trans-ACTUM-YYYYMMDD.txt` e.g.: `ACTUMTEST-trans-ACTUM-20190612.txt`
 
 The files will contain the following fields:
 
@@ -503,9 +502,9 @@ The files will contain the following fields:
 | Shipping Address | |
 | Shipping Address2	 | |
 | Shipping City | |	 
-| Shipping State	| | 
-| Shipping Zip	| | 
-| Shipping Country	| | 
+| Shipping State	| |
+| Shipping Zip	| |
+| Shipping Country	| |
 | Phone Number |	Consumer Phone Number |
 | E-Mail Address |	Consumer E-mail Address |
 | IP Address	| The IP address of the consumer |
@@ -522,12 +521,13 @@ The files will contain the following fields:
 
 The file format should be in the order listed above, but here is each field inside example delimiting fields:
 
-
 "SubID","Transaction Date","Amount","Consumer Name","Account Name","Transaction Type","Transaction Result","Authorization Code","Routing Number","Account Number","Account Type Description","Credit Card Number","Credit Card Expiration Date","Recurring Description","Company Name","Billing Address","Billing Address2","Billing City","Billing State","Billing Zip","Billing Country","Shipping Address","Shipping Address2","Shipping City","Shipping State","Shipping Zip","Shipping Country","Phone Number","E-Mail Address","IP Address","Server Referrer","MerchantOrderNumber","Order Number","History KeyID","Reference KeyID","Profile KeyID","Reseller Code","Partner Code","Username","ConsumerUniqueID"
 
 ### Returned Variables Examples
 
-**Note:** There will be no word wrap in the Transaction history files; therefore, each example listed below will actually be on one line.
+<aside class="notice">
+There is no word wrap in the Transaction history files; therefore, each example listed below will actually be on one line.
+</aside>
 
 **Check Pre-Auth:**
 "ACTUM01","Jun 28, 2003 12:03AM","6.95","John Doe","John Doe","Check Pre-Auth","Approved","CheckAuth:009999999","HIDDEN","HIDDEN","Check","","","Initial","","123 JohnDoe st","","Johnson City","TX","12345","","","","","","","","(123)123-4567","johndoe@website.com","123.123.123.123","","1000","1234567","1234567","","12345","","",""
@@ -604,7 +604,7 @@ The first line of the file is a header line. This line specifies the fields and 
 5.	CustName (required): This field must contain the consumer’s or company’s name.
 
 6.	CustPhone (depends on SubID setting – default is required): This field may contain the consumer’s or company’s phone number.
- 
+
 7.	CustEmail (depends on SubID setting – default is optional): This field may contain the consumer’s or company’s email address.
 
 8.	CustAddress1 (depends on SubID setting – default is required): This field must contain the consumer’s or company’s address.
@@ -637,7 +637,7 @@ generally better to leave this blank and put all relevant information in “Cust
 20.	AccountNumber (required): This field must contain the bank account number.
 
 21.	MerOrderNumber (optional): This field is usually left blank for batch transaction imports, but it may be used for any extra information regarding the transaction that the merchant may wish to keep track of. Actum will store this information to the database and it will be sent back to the merchant through the daily transaction file.
- 
+
 22.	Currency (required): This field must contain the value of “US” – U.S. Dollars.
 
 23.	InitialAmount (required – See note on recurring): This field must contain the amount of the transaction to be processed. This amount must be entered as a decimal amount, for example “29.20” and NOT “29.2”. A value of “29.2” in the field will fail to be imported.
@@ -669,7 +669,7 @@ If the “BillingCycle” indicates a One-Time Billing, then this should be left
 28.	FreeSignUp (optional): If the “BillingCycle” indicates a periodic billing, then this field should contain a
 “1” if the “InitialAmount” is free (i.e. 0.00). Otherwise this field should contain a “0”. If the
 “BillingCycle” indicates a One-Time Billing, then this should be left blank, i.e. a double-quoted empty string (“”).
- 
+
 29.	ProfileID (optional): This is an option to the itemized billing information fields (InitialAmount, BillingCycle, RecurAmount, DaysTilRecur, MaxNumBillings, FreeSignUp). This option requires a billing profile to be set up by Actum Merchant Support and the ID for that profile given to the merchant. If this value is specified the itemized billing information fields may be left blank, i.e. a double-quoted empty string. ("")
 
 30.	PrevHistoryID (optional): Leave this field blank, i.e. a double-quoted empty string. (“”)
@@ -682,12 +682,14 @@ If the “BillingCycle” indicates a One-Time Billing, then this should be left
 
 34.	NextBillingDate (required if billing date is in the future. See note on recurring.): In this field, if the record is to be billed on a future date, put this date in this field. Format of field is “MM/DD/YYYY”. Otherwise, you may leave this field blank, i.e. a double-quoted empty string. (“”)
 
-**Recurring Note:** If importing recurring transactions that will be billed on a future date, please set the “InitialAmount” field to
-“0.00”. “RecurAmount” and “NextBillingDate” will be required.
+<aside class="notice">If you're importing recurring transactions that will be billed on a future date, please set the “InitialAmount” field to
+"0.00”. “RecurAmount” and “NextBillingDate” will be required.
+</aside>
 
 ### Examples
 
-The below is some sample data to illustrate what the file should look like.
+The following example illustrates what the file should look like.
+
 •	Record 1 is an initial one-time transaction.
 •	Record 2 is a monthly recurring transaction with an initial billing of $29.90 which will recur at $39.90 14 days after the initial billing.
 •	Record 3 is a monthly recurring transaction that will bill $39.90 on 12/12/2012.
@@ -740,11 +742,11 @@ Now that you understand the ACH payment flow, this document will introduce you t
 
 ## Introduction to Transaction Types
 
-There are two main categories into which all 8 transaction types fall, based on the movement of money: 
+There are two main categories into which all 8 transaction types fall, based on the movement of money:
 
 *	**Debiting** (pulling money from a Receiver’s account)
 *	**Crediting** (depositing money into a Receiver’s account)  
- 
+
 ### Debiting Transaction Types
 
 1.	Debits
@@ -760,15 +762,15 @@ There are two main categories into which all 8 transaction types fall, based on 
 5.	Credits
 6.	Same-Day Credits
 7.	Refunds
-8.	Micro-Deposits 
+8.	Micro-Deposits
 
 Remember, transactions can be submitted to Actum through one of three methods:
 
 * On the web through the Virtual Terminal
 * Uploading transaction files via the shared SFTP
-* Through a direct API integration. 
+* Through a direct API integration.
 
- 
+
 ## Submission Deadlines
 
 ### Through the API
@@ -821,23 +823,24 @@ The data requirements are spelled out in greater detail in our [Integration Guid
 
 ## Reinitiated Debits
 
-There are two kinds of **Reinitiated Debits**: 
+There are two kinds of **Reinitiated Debits**:
 
 * **Stopped Payment Retries**, which are used when a Debit transaction failed due to the following ACH Return Code:
   *	`R08` for Payment Stopped (the Receiver has placed a stop payment order on this debit Entry)
-* **NSF Retries**, which are used to reinitiate previously failed Debit transactions resulting from one of two qualifying ACH Return Codes: 
+* **NSF Retries**, which are used to reinitiate previously failed Debit transactions resulting from one of two qualifying ACH Return Codes:
   *	`R01` for Insufficient Funds (the Receiver’s available balance is not sufficient to cover the dollar value of the debit Entry), and
   * `R09` for Uncollected Funds (the Receiver has a sufficient ledger balance to satisfy the dollar value of the transaction, but the available balance is below the dollar value of the debit entry).
-  
+
 If a Debit transaction fails due to ACH Return Code `R08`, the Originator must receive separate authorization from the Receiver to reinitiate the Debit.  
 
 For `R01` and `R09`, while a separate authorization is not required, it is considered a best practice for the Originator to follow up with their customer (the Receiver) to arrange a future date for the NSF Retry.
 
-**Note:** An Originator is limited to 2 Reinitiated Debits and must submit them within 180 days of the initial Debit.  
+<aside class="notice"> An Originator is limited to 2 Reinitiated Debits and must submit them within 180 days of the initial Debit.  
 NACHA requires that these transactions be identified as Reinitiated Debits rather than submitted as new transactions.  Any fees that are assessed by the Originator must also be clearly identified or explained at the time of the initial authorization.  Actum recommend using the following, or substantially similar, language:
 
-* _“If your payment is returned unpaid, you authorize us to make a one-time electronic fund transfer from your account to collect a fee of [$ ];”_ or 
-* _“If your payment is returned unpaid, you authorize us to make a one-time electronic fund transfer from your account to collect a fee. The fee will be determined [by/as follows]: [ ].”_ 
+* _“If your payment is returned unpaid, you authorize us to make a one-time electronic fund transfer from your account to collect a fee of [$ ];”_ or
+* _“If your payment is returned unpaid, you authorize us to make a one-time electronic fund transfer from your account to collect a fee. The fee will be determined [by/as follows]: [ ].”_
+</notice>
 
 Actum recommends that you create an action (allowing your users to reinitiate a previous failed transaction) that turns on automatically, upon the receipt of a qualifying ACH Return Code.  The action should include fields where your users can enter a return fee and a future date for the Reinitiated Debit.  Your system should also disable the action based on the number of attempts (two maximum) and the time that has elapsed (180 days).  Actum's developer support team will offer guidance on how best to program this action in your software solution.
 
@@ -845,8 +848,8 @@ Actum recommends that you create an action (allowing your users to reinitiate a 
 
 **Pre-Notes** are zero-dollar transactions that are used to validate the Receiver’s bank account number.  They precede the authorized Debit or Credit transaction by three banking days.
 
-An RDFI that receives a Pre-Note has three days to return it or to provide the ODFI with a **Notification of Change (NOC)**. 
-NOCs are a type of return that the RDFI sends when they accept a transaction despite there being minor errors in the data. 
+An RDFI that receives a Pre-Note has three days to return it or to provide the ODFI with a **Notification of Change (NOC)**.
+NOCs are a type of return that the RDFI sends when they accept a transaction despite there being minor errors in the data.
 
 For example, if the RDFI was able to locate the Receiver’s account based on the submitted information, but the account number was slightly off, they would send an NOC (with the correct account number) to the ODFI. As part of our service, Actum will automatically apply those corrections in the subsequent debit transaction and in our database.
 
@@ -864,7 +867,7 @@ The data requirements are spelled out in greater detail in our [Integration Guid
 
 The most important rule to understand here is that Credit transactions must be pre-funded.  Not all Originators will utilize ACH Credits, but the ones that do will understand that they must maintain a Credit Reserve Balance in their Actum account to fund their submitted Credit transactions.
 
-The Credit Reserve Balance must be separately funded by one of several options: 
+The Credit Reserve Balance must be separately funded by one of several options:
 
 * Wires initiated by the Originator
 Reverse wires authorized by the Originator and initiated by Actum
@@ -875,7 +878,7 @@ Actum automatically declines any Credit Entries submitted through the API that w
 
 The same information that’s required for an ACH Debit transaction is also required for an ACH Credit transaction (e.g., Receiver’s name, bank account details, transaction amount, etc.).  Unlike Debits however, Credits do not have the same exposure limits, unless the Originator requests them.  
 
-**Note:**  Actum recommends that you use our [Credit Reserve API](Link) to display an up-to-date balance as a reference point for your clients. 
+**Note:**  Actum recommends that you use our [Credit Reserve API](Link) to display an up-to-date balance as a reference point for your clients.
 
 ## Same-Day Credits
 
@@ -900,9 +903,11 @@ Currently, our system does not allow for partial Refunds and the amount to be re
 
 **Micro-Deposits**, while not as common as they used to be, can be a useful verification tool for certain applications.  
 
-It’s easy enough for someone to steal another person’s bank account information and use that to fraudulently pay the Originator for services.  To protect against that, some Originators will submit a Micro-Deposit transaction, which includes two separate amounts (usually a few pennies), and ask the Receiver to report back those amounts.  If the amounts match up, then the Originator has verified that the bank account is indeed the Receiver’s. 
+It’s easy enough for someone to steal another person’s bank account information and use that to fraudulently pay the Originator for services.  To protect against that, some Originators will submit a Micro-Deposit transaction, which includes two separate amounts (usually a few pennies), and ask the Receiver to report back those amounts.  If the amounts match up, then the Originator has verified that the bank account is indeed the Receiver’s.
 
-**Note:**  This is the one transaction type that is optional for our software partners to accommodate.  If you think it would be a useful addition to your software solution, let us know and we’ll help you build it out.
+<aside class="notice">
+This is the one transaction type that is optional for our software partners to accommodate.  If you think it would be a useful addition to your software solution, let us know and we’ll help you build it out.
+</aside>
 
 Now that you understand each transaction type, you’re ready to delve into our [Integration Guide](Link) (or [File Import Specifications](Link), depending on how you want to submit transactions to Actum).
 
@@ -912,7 +917,7 @@ Finally, we will go through our **Actum Partner Certification Checklist** togeth
 
 # Understanding the ACH Payment Flow
 
-Before embedding a software or web-based solution to facilitate Automated Clearing House (ACH) payments, you'll want to make sure that you understand how the ACH payment flow works.  The rules and processes around ACH will impact the features you build and how you communicate the status of a transaction. 
+Before embedding a software or web-based solution to facilitate Automated Clearing House (ACH) payments, you'll want to make sure that you understand how the ACH payment flow works.  The rules and processes around ACH will impact the features you build and how you communicate the status of a transaction.
 
 This document will briefly introduce you to the ACH payment flow and how it relates to Actum's ACH processing procedures and policies.
 
@@ -929,7 +934,7 @@ This document will briefly introduce you to the ACH payment flow and how it rela
 
 ## Introduction
 
-Before building out a software or web-based solution to facilitate Automated Clearing House (ACH) payments, it is first important to understand how the ACH payment flow works.  The rules and processes around ACH will impact the features you build and how you communicate the status of a transaction. 
+Before building out a software or web-based solution to facilitate Automated Clearing House (ACH) payments, it is first important to understand how the ACH payment flow works.  The rules and processes around ACH will impact the features you build and how you communicate the status of a transaction.
 
 
 The ACH Network is managed by **NACHA** and is made up of banks and credit unions, called depository financial institutions.  Only depository financial institutions can transmit transaction data to the Federal Reserve (or the Electronic Payments Network, another ACH Operator), and they do so in batches throughout the day.  
@@ -944,7 +949,7 @@ For the purposes of understanding the ACH payment flow, it can be helpful to thi
 
 _The Originator is an individual or entity that has received authorization from the Receiver to initiate a direct payment (ACH debit) or direct deposit (ACH credit) over the ACH Network._
 
-Not all originating merchants have ACH originating capability with their depository financial institutions.  In fact, most businesses require an intermediary with an established relationship at an **Originating Depository Financial Institution (ODFI)** in order to originate transactions. In this case, that intermediary is Actum Processing. 
+Not all originating merchants have ACH originating capability with their depository financial institutions.  In fact, most businesses require an intermediary with an established relationship at an **Originating Depository Financial Institution (ODFI)** in order to originate transactions. In this case, that intermediary is Actum Processing.
 
 With an intermediary involved, the Originator will submit a transaction to Actum, which will then send that data to its ODFI, and transmit that data to the Federal Reserve or other ACH Operator.  
 
@@ -1000,7 +1005,7 @@ These times are important to note, because Originators want to know as soon as t
 
 What happens when an ACH Return Code comes in after the settlement period ends?  
 
-First, Actum will advocate on your behalf to dishonor the return, if applicable.  If the return is legitimate, however, then it will be considered a Late Return and deducted from that day’s settlement calculation. 
+First, Actum will advocate on your behalf to dishonor the return, if applicable.  If the return is legitimate, however, then it will be considered a Late Return and deducted from that day’s settlement calculation.
 
 As an example, if you had 10 transactions of $20 each, scheduled to settle today, and there were no returns by 2:00PM, the full $200 would settle and be paid out to the Originator.  If a legitimate return for one of those transactions is received later that day or tomorrow, and you have another $200 scheduled to settle tomorrow, only $180 would end up settling tomorrow ($200 settlement LESS the $20 late return).
 
@@ -1014,7 +1019,7 @@ There are three main ways to interact with Actum:
 
 Many of Actum's software partners and web merchants use a combination of the last two methods, by pushing transactions to Actum in real-time through an API call, then pulling transaction history files from us at scheduled intervals (6:00AM and 4:00PM) through a shared SFTP.
 
-Some merchants use payment management software that is not directly integrated with Actum. Those merchants will often use the SFTP method to upload transaction files, or the Virtual Terminal to manually enter transactions and access their reports. 
+Some merchants use payment management software that is not directly integrated with Actum. Those merchants will often use the SFTP method to upload transaction files, or the Virtual Terminal to manually enter transactions and access their reports.
 
 ## Actum's API
 
@@ -1026,8 +1031,6 @@ The following actions are available through our APIs:
 * Edit or revoke a recently submitted transaction before it gets sent to the ODFI
 * Cancel or update a recurring transaction
 
-You can reference our APIs in our [Integration Guide](Placeholder for link to integration guide).
-
 There are several transaction types that your software (or web) solution should accommodate:
 *	Debits
 *	Credits
@@ -1037,9 +1040,7 @@ There are several transaction types that your software (or web) solution should 
 * Pre-Notes
 * NSF Retries
 
-
-
-# Introduction
+# Kittn Introduction
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
@@ -1258,4 +1259,3 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
