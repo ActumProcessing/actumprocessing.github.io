@@ -835,7 +835,7 @@ If a Debit transaction fails due to ACH Return Code `R08`, the Originator must r
 
 For `R01` and `R09`, while a separate authorization is not required, it is considered a best practice for the Originator to follow up with their customer (the Receiver) to arrange a future date for the NSF Retry.
 
-<aside class="notice"> An Originator is limited to 2 Reinitiated Debits and must submit them within 180 days of the initial Debit. NACHA requires that these transactions be identified as Reinitiated Debits rather than submitted as new transactions. Any fees that are assessed by the Originator must also be clearly identified or explained at the time of the initial authorization. </notice>
+An Originator is limited to 2 Reinitiated Debits and must submit them within 180 days of the initial Debit. NACHA requires that these transactions be identified as Reinitiated Debits rather than submitted as new transactions. Any fees that are assessed by the Originator must also be clearly identified or explained at the time of the initial authorization.
 
 Actum recommend using the following, or substantially similar, language:
 
