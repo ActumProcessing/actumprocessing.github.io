@@ -5,6 +5,9 @@ toc_footers:
   - <a href='#'>Copyright 2019 Actum Processing</a>
   - <a href='https://www.actumprocessing.com'>www.actumprocessing.com</a>
 
+language_tabs: # must be one of https://git.io/vQNgJ		
+   - shell		
+
 includes:
   - errors
 
