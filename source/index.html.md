@@ -8,9 +8,6 @@ toc_footers:
 language_tabs: # must be one of https://git.io/vQNgJ		
    - shell		
 
-includes:
-  - errors
-
 search: true
 ---
 
