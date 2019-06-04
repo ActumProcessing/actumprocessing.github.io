@@ -8,7 +8,7 @@ Learn more at: [https://www.actumprocessing.com/developers](https://www.actumpro
 
 Actum's v2 API docs are built using [Slate](https://github.com/lord/slate). Our modifications are available for use to the open source community.
 
-Actum's docs are hosted via GitHub pages at: [http://actumprocessing.github.io/slate](http://actumprocessing.github.io/slate). This site will be CNAME mapped to: docs.actumprocessing.com.
+Actum's docs are hosted via GitHub pages at: [http://actumprocessing.github.io/api-v2](http://actumprocessing.github.io/slate). This site will be CNAME mapped to: docs.actumprocessing.com.
 
 ## Getting started
 
