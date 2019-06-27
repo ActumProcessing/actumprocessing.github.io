@@ -81,6 +81,11 @@ The `merchant` object represents account information pertaining to the merchant 
 | `sub_id` | Sub ID of merchant. [max Length = 8] | ALPHANUMERIC | Y |
 | `pmt_type` | Type of payment being submitted (check, or `chk`, is the default value). | -- | N |
 | `response_location` | The `man_trans.cgi` script will respond to this URL with response variables if passed in. | Full path URL | N |
+| `origcode` | SEC code being used by merchant. Input values include the following: `W`= WEB, `C` = CCD, `P` = PPD, `T` = TEL | ALPHANUMERIC | 
+
+<aside class="notice">
+If you're processing transactions with more than one SEC code, your `sub_id` is configured with multiple seccodes as comma-delimited single characters, e.g. `W,P` or `C,P`.  If no SEC code is given in your request, you will return the first letter in the string by default.
+</aside>
 
 # Submitting a Transaction
 
